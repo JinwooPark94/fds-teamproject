@@ -1,0 +1,35 @@
+
+<div class="container">
+  <div class="login-wrap col-md-5">
+    <h2 class="login-title">로그인</h2>
+    <div class="alert alert-danger" role="alert" *ngIf="loginGetData?.length === 0">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+       {{ message }}
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="loginGetData?.length > 0">
+      <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+      <span class="sr-only">Success:</span>
+      {{ message }}
+    </div>
+    <form #userForm="ngForm" (ngSubmit)="login(userid.value, userpw.value)">
+      <div class="form-group">
+        <label for="idInput"></label>
+        <input type="text" name="userid" class="form-control form-size" id="idInput" placeholder="아이디(이메일)" #userid>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput"></label>
+        <input type="password" name="userpw" class="form-control form-size" id="passwordInput" placeholder="비밀번호" (keyup.enter)="login(userid, userpw)" #userpw>
+      </div>
+      <button type="submit" class="btn btn-default btn-lg btn-block login-button">로그인</button>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> 로그인 저장
+        </label>
+      </div>
+    </form>
+    <div class="g-signin2" data-width="445" data-height="46" data-innerText="123" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <a href="/" onclick="signOut();">Sign out</a>
+    <pre *ngIf="loginGetData?.length > 0"> {{ loginGetData | json }}</pre>
+  </div>
+</div>
