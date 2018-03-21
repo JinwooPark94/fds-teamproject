@@ -1,20 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 a {
-  color: #423b3c;
+  cursor: pointer;
 }
 
-a:hover{
-  color: #25c1f1;
-  cursor: pointer;
+.nav {
+  float: left;
+}
+
+.navbar-nav > li > a:hover {
+  background-color:transparent;
 }
 
 /*
   lnb 메뉴
 */
-
-.lnb-list > li > a, .main-menu > li > a, .footer-list > li > a{
-  background:transparent !important;
-}
 
 .lnb-wrap {
   border-bottom:1px solid #e0e0e0;
@@ -22,7 +21,12 @@ a:hover{
 }
 
 .lnb-list {
-  margin-right: -5px;
+  margin:0;
+  float:right;
+}
+
+.lnb-list > li {
+  float:left;
 }
 
 .lnb-list > li > a, .footer-list > li > a{
@@ -41,15 +45,14 @@ a:hover{
 /*
   메인 메뉴
 */
+.navbar-brand{
+  margin-top: 10px;
+}
 
 .main-menu > li > a {
   font-weight:bold;
   padding:30px 20px;
   font-size:18px;
-}
-
-.logo > .navbar-brand {
-  padding:25px 15px;
 }
 
 /*
@@ -59,6 +62,9 @@ a:hover{
 .navi-wrap{
   background:#423b3c
 }
+.navi-nav > ul > li{
+  float: left;
+}
 
 .navi-nav > ul > li > a {
   color:#fff;
@@ -67,7 +73,6 @@ a:hover{
 }
 
 .navi-nav > ul > li > a:hover {
-  background:transparent;
   color:#25c1f1;
 }
 
@@ -188,7 +193,7 @@ a:hover{
 
 .input-group-btn .ico-loc{
   background: #fff url('/assets/images/common/sprite-icon.png') no-repeat 0 0;
-  background-size: 82px;
+  background-size: 93px;
   width: 40px;
   height: 40px;
   border-radius: 4px !important;
@@ -207,7 +212,7 @@ a:hover{
 
 .cancel-button-ico{
   background: #fff url('/assets/images/common/sprite-icon.png') no-repeat -33px -2px;
-  background-size: 82px;
+  background-size: 88px;
   width: 12px;
   height: 12px;
   border-radius: 4px !important;
@@ -243,10 +248,6 @@ a:hover{
   border-top:1px solid #e0e0e0;
 }
 
-.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:link{
-  background:transparent;
-}
-
 .btn-search{
   height: 40px;
   border: none;
@@ -257,4 +258,8 @@ a:hover{
 .btn-search:hover, .btn-search:focus, .btn-search:link {
   background:#25c1f1;
   color:#fff;
+}
+
+.navbar-toggle .icon-bar {
+  background: #423b3c;
 }

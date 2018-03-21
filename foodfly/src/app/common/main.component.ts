@@ -1,7 +1,7 @@
 // observable-event-http.component
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -42,18 +42,31 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   getInputData(Inputdd: string): Observable<any> {
-    const params = new HttpParams()
-      .set('confmKey', 'U01TX0FVVEgyMDE4MDMxODIxMzA0MzEwNzczNjI=')
-      .set('countPerPage', '5')
-      .set('keyword', Inputdd )
-      .set('resultType', 'json');
+    // const headers = new HttpHeaders()
+    //   .set('X-ApiKey', 'iphoneap')
+    //   .set('X-ApiSecret', 'fe5183cc3dea12bd0ce299cf110a75a2')
+    //   .set('Cache-Control', 'no-cache')
+    //   .set('Content-Type', 'application/x-www-form-urlencoded');
+    const headers = {
+      'X-ApiKey': 'iphoneap',
+      'X-ApiSecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    // const headers = new HttpHeaders()
+    //   .set('confmKey', 'U01TX0FVVEgyMDE4MDMxODIxMzA0MzEwNzczNjI=');
 
+    console.log(headers);
     return this.http
-      .get<any>(`http://www.juso.go.kr/addrlink/addrLinkApi.do`, { params })
-      .map(address => (address.results.juso))
+      .post<any>(`https://www.yogiyo.co.kr/api/v1/districts/`, { headers: HttpHeaders })
+      .map(data => (console.log(data)))
       .do(console.log)
+      // .post<any>(`http://www.juso.go.kr/addrlink/addrLinkApi.do`, { 'keyword': '서울시 서초구' }, { headers })
+      // .map(data => (console.log(data)))
+      // .do(console.log)
       // ⑦ Error handling
       .catch(err => {
+        console.log('들어옴');
         if (err.status === 404) {
           console.log(`[ERROR] Not found user:`);
           return Observable.of<any>(err);
